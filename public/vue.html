@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>image_viewer</title>
+    <link rel="stylesheet" href="content/bootstrap.min.css">
+    <link rel="stylesheet" href="vue_style.css">
+    <script src="content/vue.js"></script>
+    <script src="content/vue-resource.min.js"></script>
+    <script src="vue_viewer.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+    <div class="header">
+        <div class="top-button" @click="!first">first</div>
+        <div class="top-button" @click="!second">second</div>
+        <div class="top-button" @click="!third">third</div>
+    </div>
+    <div class="content">
+        <div v-if="first">
+            <input v-model="message">
+            {{message}}
+        </div>
+        {{first}} {{second}} {{third}}
+    </div>
+</div>
+</body>
+</html>
