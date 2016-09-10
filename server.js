@@ -27,7 +27,7 @@ app.get('/vue', function(req, res) {
 })
 
 app.get('/aaa', function(req, res) {
-    res.status(200).send('aaa');
+    res.status(200).send('Hello Sveta');
 })
 
 //пример обработки запросов с параметрами get - для безопастных post - для не безопастных

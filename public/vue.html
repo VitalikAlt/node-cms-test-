@@ -12,16 +12,17 @@
 <body>
 <div id="app" class="container">
     <div class="header">
-        <div class="top-button" @click="!first">first</div>
-        <div class="top-button" @click="!second">second</div>
-        <div class="top-button" @click="!third">third</div>
+        <a class="top-button" @click="first = !first, second = false, third = false" href="#">first</a>
+        <a class="top-button" @click="first = false, second = !second, third = false" href="#">second</a>
+        <a class="top-button" @click="first = false, second = false, third = !third" href="#">third</a>
     </div>
     <div class="content">
         <div v-if="first">
-            <input v-model="message">
+            <input v-model="message"></br>
             {{message}}
         </div>
-        {{first}} {{second}} {{third}}
+        <div v-if="second" style="width:200px; height:200px; background-color: green;"></div>
+        <div v-if="third">{{first}} {{second}} {{third}}</div>
     </div>
 </div>
 </body>
