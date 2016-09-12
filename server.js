@@ -6,10 +6,32 @@ var express = require('express'),
     path = require('path')
     body = require('body-parser');
 
+
+var upload = require('jquery-file-upload-middleware');
+
+upload.configure({
+    uploadDir: __dirname + '/public/uploads',
+    uploadUrl: '/uploads',
+    imageVersions: {
+        thumbnail: {
+            width: 80,
+            height: 80
+        }
+    }
+});
+
+app.use('/upload', upload.fileHandler('/s'));
 app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
 app.use(express.static(path.join(__dirname + '/public/static')));
 
+app.get('/upload', function( req, res ){
+    res.status(404).send('sa');
+});
+
+app.get('/user:id', function (req, res, next) {
+    res.send(req.params.id);
+});
 // ------------------------Осторожно он не смотрит на регистр букв
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public' + '/index.html');

@@ -5,13 +5,23 @@
     <title>image_viewer</title>
     <script src="content/angular.js"></script>
     <script src="angular_app.js"></script>
+    <link rel="stylesheet" href="content/bootstrap.min.css">
+    <link rel="stylesheet" href="vue_style.css">
 </head>
 <body>
 <div ng-app="app">
     <div ng-controller="i/o">
-        <input ng-model="name" ng-keyup="NameChange()">
-        <h2>{{greeting}}</h2>
-        <h1>{{name}}</h1>
+        <div class="header">
+            <a class="top-button" ng-click="ChooseFirst()" href="#">first</a>
+            <a class="top-button" ng-click="ChooseSecond()" href="#">second</a>
+            <a class="top-button" ng-click="ChooseThird()" href="#">third</a>
+        </div>
+        <div ng-show="first" class="content">
+            <input ng-model="name" ng-keyup="NameChange()">
+            <h1>{{name}}</h1>
+        </div>
+        <div ng-show="second" style="width:200px; height:200px; background-color: green;"></div>
+        <div ng-show="third">{{first}} {{second}} {{third}}</div>
     </div>
 </div>
 </body>
