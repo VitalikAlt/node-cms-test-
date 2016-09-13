@@ -1,11 +1,11 @@
 /**
  * Created by Виталий on 07.09.2016.
  */
-var express = require('express'),
-    app = express(),
-    path = require('path')
-    body = require('body-parser');
-
+var express = require('express');
+var app = express();
+var path = require('path');
+var body = require('body-parser');
+var first_API = require('./libs/first_API');
 
 var upload = require('jquery-file-upload-middleware');
 
@@ -25,13 +25,34 @@ app.use(body.urlencoded({ extended: false }));
 app.use(body.json());
 app.use(express.static(path.join(__dirname + '/public/static')));
 
-app.get('/upload', function( req, res ){
-    res.status(404).send('sa');
-});
-
+// 9999999999999999999999999 Node router 99999999999999999999999999999999999999999999
 app.get('/user:id', function (req, res, next) {
     res.send(req.params.id);
 });
+//99999999999999999999999999999999999999999999999999999999999999999999999999999999999
+
+//======================= Work with mongodb ===================================
+app.get('/api/articles', function(req, res) {
+    first_API.getTableList(function(data) {
+        res.send(data);
+    });
+});
+
+app.post('/api/articles', function(req, res) {
+    first_API.addData(req.query, function(data) {
+        res.send(data);
+    });
+});
+
+app.get('/api/articles/:id', function(req, res) {
+    first_API.getElementById(req.params.id, function (data) {
+        res.send(data);
+    }, function (data) {
+        res.send(data);
+    });
+});
+//==========================================================================
+
 // ------------------------Осторожно он не смотрит на регистр букв
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public' + '/index.html');
